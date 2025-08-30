@@ -61,7 +61,7 @@
 
     
     
-    
+    <!--
     <div class="sort-controls card" style="margin:12px 0; padding:12px; display:flex; gap:12px; flex-wrap:wrap">
   <div style="display:flex; flex-direction:column; gap:4px; min-width:200px">
     <label for="unitSort" class="small">Sort by Unit Number</label>
@@ -83,6 +83,7 @@
     <button id="resetSort" class="btn secondary" type="button">Reset</button>
   </div>
 </div>
+-->
     
     
     
@@ -126,6 +127,28 @@
 <!-- Mobile sticky bar (only shown on small screens and after unlock) -->
 <div id="mobileDownloadBar" class="mobile-download" style="display:none">
   <button id="mobileDownloadPdfBtn" class="btn">Download PDF</button>
+</div>
+
+<div class="sort-controls card" style="margin:12px 0; padding:12px; display:flex; gap:12px; flex-wrap:wrap">
+  <div style="display:flex; flex-direction:column; gap:4px; min-width:200px">
+    <label for="unitSort" class="small">Sort by Unit Number</label>
+    <select id="unitSort" class="input">
+      <option value="">None</option>
+      <option value="asc">A → Z</option>
+      <option value="desc">Z → A</option>
+    </select>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:4px; min-width:200px">
+    <label for="sizeSort" class="small">Sort by Size</label>
+    <select id="sizeSort" class="input">
+      <option value="">None</option>
+      <option value="asc">Low → High</option>
+      <option value="desc">High → Low</option>
+    </select>
+  </div>
+  <div style="display:flex; align-items:flex-end">
+    <button id="resetSort" class="btn secondary" type="button">Reset</button>
+  </div>
 </div>
 
 
