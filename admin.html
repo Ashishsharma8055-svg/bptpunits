@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Admin</title>
+  <link rel="stylesheet" href="assets/css/admin.css"/>
+
+<style>
+#globalLoader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+}
+#globalLoader.hidden { opacity: 0; pointer-events: none; }
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 60px; height: 60px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
+</style>
+
+</head>
+<body>
+
+<!-- Global Loader -->
+<div id="globalLoader"><div class="spinner"></div></div>
+>
+  <div class="nav">
+    <div class="brand">🏢 Real Estate CRM — Admin</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="inventory.html">Inventory</a>
+      <a href="admin.html" class="active">Admin</a>
+    </nav>
+  </div>
+
+  <div class="wrap card" id="loginPanel">
+    <h2>Admin Login</h2>
+    <div class="row">
+      <div class="col"><label>Username</label><input id="u" class="input"></div>
+      <div class="col"><label>Password</label><input id="p" class="input" type="password"></div>
+    </div>
+    <div style="margin-top:12px;display:flex;gap:10px;justify-content:flex-end">
+      <button id="loginBtn" class="btn">Login</button>
+    </div>
+    <div class="small">Manage data sheet.</div>
+  </div>
+
+  <div class="wrap card" id="adminPanel" style="display:none">
+    <h2>Manage Data</h2>
+
+    <div class="grid2">
+      <section class="card inner">
+        <h3>Add Project</h3>
+        <div class="row">
+          <div class="col"><label>Project Name</label><input id="ap_name" class="input"></div>
+          <div class="col"><label>Location</label><input id="ap_loc" class="input"></div>
+        </div>
+        <div class="row">
+          <div class="col"><label>Product Mix</label><input id="ap_mix" class="input"></div>
+          <div class="col"><label>Budget Range</label><input id="ap_budget" class="input"></div>
+        </div>
+        <div class="row">
+          <div class="col"><label>Brochure URL</label><input id="ap_brochure" class="input"></div>
+          <div class="col"><label>Video URL</label><input id="ap_video" class="input"></div>
+        </div>
+        <div class="row">
+          <div class="col"><label>Photo URL 1</label><input id="ap_p1" class="input"></div>
+          <div class="col"><label>Photo URL 2</label><input id="ap_p2" class="input"></div>
+        </div>
+        <div class="row">
+          <div class="col"><label>Photo URL 3</label><input id="ap_p3" class="input"></div>
+          <div class="col"><label>Photo URL 4</label><input id="ap_p4" class="input"></div>
+        </div>
+        <div style="margin-top:10px;display:flex;justify-content:flex-end">
+          <button id="addProjectBtn" class="btn">Add Project</button>
+        </div>
+      </section>
+
+      <section class="card inner">
+        <h3>Add Inventory</h3>
+        <div class="row">
+          <div class="col"><label>Project Name</label><input id="ai_project" class="input"></div>
+          <div class="col"><label>Unit Number</label><input id="ai_unit" class="input"></div>
+        </div>
+        <div class="row">
+          <div class="col"><label>Property Type</label><input id="ai_type" class="input"></div>
+          <div class="col"><label>Property Status</label><input id="ai_status" class="input"></div>
+        </div>
+        <div class="row">
+          <div class="col"><label>Size</label><input id="ai_size" class="input"></div>
+          <div class="col"><label>Budget</label><input id="ai_budget" class="input"></div>
+        </div>
+        <div class="row">
+          <div class="col"><label>Possession</label><input id="ai_poss" class="input"></div>
+          <div class="col"><label>Payment Plan</label><input id="ai_pay" class="input"></div>
+        </div>
+        <div style="margin-top:10px;display:flex;justify-content:flex-end">
+          <button id="addInvBtn" class="btn">Add Inventory</button>
+        </div>
+      </section>
+    </div>
+
+    <section class="card inner">
+      <h3>Bulk CSV Upload (Inventory)</h3>
+      <div class="small">Headers: Project Name, Location, Property Type, Property Status, Unit Number, Size, Budget, Possession, Payment Plan</div>
+      <div style="margin-top:8px">
+        <input type="file" id="csvFile" accept=".csv">
+        <button id="parseCsvBtn" class="btn">Preview</button>
+        <button id="saveCsvBtn" class="btn secondary" disabled>Save to Sheet</button>
+      </div>
+      <div class="table-wrap" id="csvPreview" style="margin-top:10px"></div>
+    </section>
+
+    <section class="card inner">
+      <h3>Manage Projects</h3>
+      <div id="projTable" class="table-wrap"></div>
+    </section>
+
+    <section class="card inner">
+      <h3>Manage Inventory</h3>
+      <div style="margin-top:8px">
+        <label>Filter by project</label>
+        <input id="invFilter" class="input" placeholder="Project Name">
+      </div>
+      <div id="invTable" class="table-wrap" style="margin-top:8px"></div>
+    </section>
+  </div>
+
+  <footer class="foot">
+    <div>© 2025 Real Estate CRM</div>
+    <div class="small">Admin control center</div>
+  </footer>
+
+  <script type="module" src="assets/js/admin.js"></script>
+
+<script>
+window.addEventListener("load", () => {
+  const loader = document.getElementById("globalLoader");
+  setTimeout(() => loader.classList.add("hidden"), 500);
+});
+function showLoader(){document.getElementById("globalLoader").classList.remove("hidden");}
+function hideLoader(){document.getElementById("globalLoader").classList.add("hidden");}
+document.querySelectorAll("select, table").forEach(el => {
+  el.addEventListener("change", () => {
+    showLoader();
+    setTimeout(hideLoader, 800);
+  });
+});
+</script>
+
+</body>
+</html>

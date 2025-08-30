@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Happy to Know you</title>
+  <link rel="stylesheet" href="assets/css/lead.css"/>
+
+<style>
+#globalLoader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+}
+#globalLoader.hidden { opacity: 0; pointer-events: none; }
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 60px; height: 60px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
+</style>
+
+</head>
+<body>
+
+<!-- Global Loader -->
+<div id="globalLoader"><div class="spinner"></div></div>
+>
+  <div class="wrap">
+    <div class="box">
+      <h2>Happy to Know you</h2>
+      <p class="small">Enter your details to unlock datasheet.</p>
+      <form id="leadForm" novalidate>
+        <div class="row">
+          <div class="col">
+           
+            <input id="project" class="input" readonly hidden>
+          </div>
+          <div class="col">
+            
+            <input id="unit" class="input" readonly hidden>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label> Are you Real Estate Partner?</label>
+            <div class="toggle">
+              <input type="checkbox" id="isAgent">
+              <span class="slider"></span>
+              <span class="label">No</span>
+            </div>
+          </div>
+         
+          <!-- <div class="col">
+            <label>City</label>
+            <input id="city" class="input" placeholder="City">
+               </div>
+               -->
+               
+        </div>
+        <div class="row">
+          <div class="col">
+            <label>Your Name *</label>
+            <input id="name" class="input" required placeholder="Full name">
+          </div>
+          <div class="col">
+            <label>Mobile Number *</label>
+            <input id="mobile" class="input" required inputmode="numeric" pattern="[0-9]{6,15}" placeholder="10+ digits">
+          </div>
+        </div>
+        <div class="row">
+          
+          <!--<div class="col">
+            <label>Company Name</label>
+            <input id="company" class="input" placeholder="Company">
+          </div> -->
+
+        </div>
+        <div class="actions">
+          
+          <button type="submit" class="btn">Submit</button>
+          <button type="button" id="closeBtn" class="btn secondary">Close</button>
+
+        </div>
+        <div id="status" class="small" style="margin-top:8px"></div>
+      </form>
+    </div>
+  </div>
+  <script type="module" src="assets/js/lead.js"></script>
+
+  <!-- Global loading overlay -->
+<div id="leadLoadingOverlay" class="lead-loader hidden" aria-live="assertive" aria-busy="true">
+  <div class="lead-loader-card" role="status">
+    <div class="spinner" aria-hidden="true"></div>
+    <div class="lead-loader-text">
+      <span>Unlocking / In progress</span><span class="dots">...</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- Global loading overlay -->
+<div id="leadLoadingOverlay" class="lead-loader hidden" aria-live="assertive" aria-busy="true">
+  <div class="lead-loader-card" role="status">
+    <div class="spinner" aria-hidden="true"></div>
+    <div class="lead-loader-text">
+      <span>Uploading / In progress</span><span class="dots"></span>
+    </div>
+  </div>
+</div>
+
+<!-- Loader logic (kept separate from your lead.js) -->
+<script src="assets/js/lead-loader.js"></script>
+
+
+
+<script>
+window.addEventListener("load", () => {
+  const loader = document.getElementById("globalLoader");
+  setTimeout(() => loader.classList.add("hidden"), 500);
+});
+function showLoader(){document.getElementById("globalLoader").classList.remove("hidden");}
+function hideLoader(){document.getElementById("globalLoader").classList.add("hidden");}
+document.querySelectorAll("select, table").forEach(el => {
+  el.addEventListener("change", () => {
+    showLoader();
+    setTimeout(hideLoader, 800);
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+:root{
+  --bg:#071226;--panel:#0b1624;--muted:#8ea6c9;--text:#e9f0fb;
+  --primary:#4cc38a;--accent:#84a9ff;--border:#1b2a44;
+}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(1000px 700px at 10% -10%,#13233b 0%,#071226 35%,#071226 100%);color:var(--text)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+.nav .brand{font-weight:800}
+.nav a{color:var(--text);text-decoration:none;margin-left:14px;opacity:.95}
+.nav a.active{color:var(--primary)}
+.btn{background:var(--primary);color:#04210b;border:none;padding:9px 12px;border-radius:10px;font-weight:800;cursor:pointer;box-shadow:0 8px 18px rgba(0,0,0,.35)}
+.btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+.input, select, textarea{background:#071828;border:1px solid var(--border);color:var(--text);padding:10px 12px;border-radius:10px;outline:none}
+
+.card{border:1px solid var(--border);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));box-shadow:0 12px 28px rgba(0,0,0,.35);padding:16px}
+/*.card{border:1px solid var(--border);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));box-shadow:0 12px 28px rgba(0,0,0,.35);padding:16px}*/
+.small{color:var(--muted);font-size:13px}
+.foot{border-top:1px solid var(--border);padding:16px 24px;display:flex;justify-content:space-between;align-items:center;margin-top:20px}
+
+.hero{max-width:1100px;margin:24px auto 10px;padding:0 24px}
+.hero h1{margin:0 0 8px;font-size:40px}
+.hero p{margin:0;color:var(--muted)}
+.tiles{max-width:1100px;margin:10px auto;padding:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.tile{border:1px solid var(--border);border-radius:12px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));overflow:hidden;transition:transform .18s ease, box-shadow .18s ease}
+.tile:hover{transform:translateY(-4px);box-shadow:0 16px 34px rgba(0,0,0,.45)}
+.tile img{width:100%;height:150px;object-fit:cover;display:block}
+.tile .meta{padding:10px 12px}
+.tile .name{font-weight:800}
+.tile .line{color:var(--muted);font-size:13px;margin-top:4px}
+
+/* Force white text on tile content */
+.tile .name,
+.tile .line {
+  color: #cec8be !important;
+}

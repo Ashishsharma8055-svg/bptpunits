@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Inventory</title>
+  <link rel="stylesheet" href="assets/css/inventory.css"/>
+
+<style>
+#globalLoader {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.4s ease;
+}
+#globalLoader.hidden { opacity: 0; pointer-events: none; }
+.spinner {
+  border: 6px solid #f3f3f3;
+  border-top: 6px solid #3498db;
+  border-radius: 50%;
+  width: 60px; height: 60px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { 0% { transform: rotate(0deg);} 100% { transform: rotate(360deg);} }
+</style>
+
+</head>
+<body>
+
+<!-- Global Loader -->
+<div id="globalLoader"><div class="spinner"></div></div>
+>
+  <div class="nav">
+    <div class="brand">🏢 MIS</div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="inventory.html" class="active">Inventory</a>
+    </nav>
+  </div>
+
+  <div class="wrap card">
+    <div class="hdr">
+      <div>
+        <h2>Inventory</h2>
+        </div>
+    
+        <div class="actions">
+        
+          <!--<label for="projectSelect">Project</label> -->
+        <select id="projectSelect" class="input" aria-label="Project"></select>
+        <button id="refreshBtn" class="btn" type="button">Refresh</button>
+        <!-- Shown only after unlock -->
+        <button id="downloadPdfBtn" class="btn secondary" type="button" style="display:none">Download PDF</button>
+      </div>
+    </div>
+
+    
+    
+    
+    <div class="sort-controls card" style="margin:12px 0; padding:12px; display:flex; gap:12px; flex-wrap:wrap">
+  <div style="display:flex; flex-direction:column; gap:4px; min-width:200px">
+    <label for="unitSort" class="small">Sort by Unit Number</label>
+    <select id="unitSort" class="input">
+      <option value="">None</option>
+      <option value="asc">A → Z</option>
+      <option value="desc">Z → A</option>
+    </select>
+  </div>
+  <div style="display:flex; flex-direction:column; gap:4px; min-width:200px">
+    <label for="sizeSort" class="small">Sort by Size</label>
+    <select id="sizeSort" class="input">
+      <option value="">None</option>
+      <option value="asc">Low → High</option>
+      <option value="desc">High → Low</option>
+    </select>
+  </div>
+  <div style="display:flex; align-items:flex-end">
+    <button id="resetSort" class="btn secondary" type="button">Reset</button>
+  </div>
+</div>
+    
+    
+    
+    <div class="table-wrap">
+      <table class="table" aria-live="polite">
+        <thead>
+          <tr>
+            <th style="width:120px">Action</th>
+            <th>Project Name</th>
+            <th>Project Type</th>
+            <th>Unit Number</th>
+            <th>Size</th>
+           <th>Budget</th>
+            <th>Status</th>
+            <th>Pay Plan</th>
+            <!-- <th style="width:120px">Action</th> -->
+
+          </tr>
+        </thead>
+        <tbody id="inventoryBody"></tbody>
+      </table>
+      <div id="noData" class="small" style="display:none">No inventory for selected project.</div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <div>© 2025 Real Estate CRM</div>
+    <div class="small">Connected to MIS DBS</div>
+  </footer>
+
+  <!-- Important: use type="module" so imports work and DOM is ready -->
+  <script type="module" src="assets/js/inventory.js"></script>
+
+  <!-- Mobile sticky bar (only shown on small screens and after unlock) -->
+
+  <!-- 
+  <div id="mobileDownloadBar" class="mobile-download" style="display:none">
+  <button id="mobileDownloadPdfBtn" class="btn">Download PDF</button>
+</div>
+
+<!-- Mobile sticky bar (only shown on small screens and after unlock) -->
+<div id="mobileDownloadBar" class="mobile-download" style="display:none">
+  <button id="mobileDownloadPdfBtn" class="btn">Download PDF</button>
+</div>
+
+
+<script>
+window.addEventListener("load", () => {
+  const loader = document.getElementById("globalLoader");
+  setTimeout(() => loader.classList.add("hidden"), 500);
+});
+function showLoader(){document.getElementById("globalLoader").classList.remove("hidden");}
+function hideLoader(){document.getElementById("globalLoader").classList.add("hidden");}
+document.querySelectorAll("select, table").forEach(el => {
+  el.addEventListener("change", () => {
+    showLoader();
+    setTimeout(hideLoader, 800);
+  });
+});
+</script>
+
+</body>
+</html>

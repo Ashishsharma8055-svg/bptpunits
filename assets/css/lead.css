@@ -1,0 +1,164 @@
+:root{
+  --bg:#071226;--panel:#0b1624;--muted:#8ea6c9;--text:#e9f0fb;
+  --primary:#4cc38a;--accent:#84a9ff;--border:#1b2a44;
+}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:radial-gradient(1000px 700px at 10% -10%,#13233b 0%,#071226 35%,#071226 100%);color:var(--text)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);background:rgba(255,255,255,.02)}
+.btn{background:var(--primary);color:#04210b;border:none;padding:9px 12px;border-radius:10px;font-weight:800;cursor:pointer;box-shadow:0 8px 18px rgba(0,0,0,.35)}
+.btn.secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+.input{background:#071828;border:1px solid var(--border);color:var(--text);padding:10px 12px;border-radius:10px;outline:none;width:100%}
+.small{color:var(--muted);font-size:13px}
+
+.wrap{max-width:860px;margin:26px auto;padding:20px}
+.box{border:1px solid var(--border);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01));box-shadow:0 12px 28px rgba(0,0,0,.35);padding:16px}
+h2{margin:0 0 6px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+@media(max-width:720px){.row{grid-template-columns:1fr}}
+.col label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}
+.actions{display:flex;justify-content:flex-end;gap:10px;margin-top:14px}
+
+/* toggle */
+.toggle{position:relative;display:inline-flex;align-items:center;gap:10px}
+.toggle input{appearance:none;width:44px;height:24px;background:#22314b;border-radius:999px;position:relative;outline:none;cursor:pointer;transition:all .2s ease-in;border:1px solid var(--border)}
+.toggle input::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#a5b9d8;transition:all .2s ease-in}
+.toggle input:checked{background:#2bb673}
+.toggle input:checked::after{left:22px;background:#eaffea}
+.toggle .label{color:var(--muted);font-size:12px;user-select:none}
+
+
+/* --- Lead page loader --- */
+.lead-loader.hidden { display: none; }
+
+.lead-loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.55); /* slate-900/55 */
+  backdrop-filter: blur(2px);
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+}
+
+.lead-loader-card {
+  background: white;
+  color: #0f172a;
+  padding: 22px 28px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(2, 6, 23, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 260px;
+  justify-content: center;
+  text-align: center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #e5e7eb;      /* light grey */
+  border-top-color: #2563eb;       /* blue-600 */
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+
+.lead-loader-text {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: .2px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.dots::after {
+  content: '';
+  animation: dots 1.4s steps(4, end) infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes dots {
+  0%  { content: '';    }
+  25% { content: '.';   }
+  50% { content: '..';  }
+  75% { content: '...'; }
+  100%{ content: '';    }
+}
+
+/* Optional: visual state for disabled submit button */
+button[disabled], .btn:disabled, input[type="submit"][disabled] {
+  opacity: .6;
+  cursor: not-allowed;
+  filter: grayscale(25%);
+}
+
+/*New Code Page Start
+/*New Code Page Start
+/*New Code Page Start
+/*New Code Page Start
+/*New Code Page Start
+/*New Code Page Start
+/*New Code Page Start
+/*New Code Page Start
+/*New Code Page Start
+/*New Code Page Start
+/*New Code Page Start
+
+
+/* --- Lead page overlay loader --- */
+.lead-loader.hidden { display: none; }
+.lead-loader {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 18, 38, 0.55);
+  backdrop-filter: blur(2px);
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+}
+.lead-loader-card {
+  background: #0b1624;
+  color: var(--text);
+  padding: 18px 22px;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 240px;
+  justify-content: center;
+}
+.spinner {
+  width: 26px;
+  height: 26px;
+  border: 3px solid rgba(255,255,255,.2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+}
+.lead-loader-text {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .2px;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.dots::after { content: ''; animation: dots 1.4s steps(4, end) infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes dots {
+  0%{content:''}25%{content:'.'}50%{content:'..'}75%{content:'...'}100%{content:''}
+}
+
+/* Also ensure disabled buttons look disabled (your theme-compatible) */
+button[disabled], .btn:disabled, input[type="submit"][disabled] {
+  opacity: .6;
+  cursor: not-allowed;
+  filter: grayscale(25%);
+}
